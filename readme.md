@@ -12,3 +12,33 @@ Damping functions rely on a threshold value and a maximum value. Any value withi
 Multiple damping functions are available (threshold value 0; maxValue 1 assumed):
 
 ![damping_functions](./dampingFunctions.png)
+
+### Make
+
+#### files
+
+	/* Run-time selectable functions */
+	primitives/functions/Function1Mesh/makeFunction1Meshs.C
+
+	primitives/functions/Function1Mesh/ramp/ramp.C
+	primitives/functions/Function1Mesh/linearRamp/linearRamp.C
+
+	primitives/functions/Function1Mesh/damp/damp.C
+	primitives/functions/Function1Mesh/linearDampCFL/linearDampCFL.C
+	primitives/functions/Function1Mesh/exp10DampCFL/exp10DampCFL.C
+	primitives/functions/Function1Mesh/quadraticDampCFL/quadraticDampCFL.C
+	primitives/functions/Function1Mesh/halfCosineDampCFL/halfCosineDampCFL.C
+
+	LIB = $(FOAM_USER_LIBBIN)/libOpenFOAM_$(USER)
+
+#### options
+
+	EXE_INC = \
+	    -I$(OBJECTS_DIR) \
+	    -I$(LIB_SRC)/finiteVolume/lnInclude \
+
+	LIB_LIBS = \
+	    $(FOAM_LIBBIN)/libOSspecific.o \
+	    -L$(FOAM_LIBBIN)/dummy -lPstream \
+	    -lz \
+	    -lfiniteVolume
